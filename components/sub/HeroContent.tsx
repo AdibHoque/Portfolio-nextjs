@@ -45,10 +45,11 @@ const HeroContent = () => {
           variants={slideInFromLeft(0.8)}
           className="text-lg text-gray-400 my-5 max-w-[600px]"
         >
-          I&apos;m a seasoned Frontend Developer with a robust portfolio of web
-          applications. My expertise encompasses a wide range of technologies
-          and tools, enabling me to create dynamic, user-friendly, and
-          responsive web solutions.
+          I&apos;m an aspiring Frontend Developer with a growing portfolio of
+          web applications. I have foundational knowledge in various
+          technologies and tools, and I am passionate about creating
+          user-friendly and responsive web solutions. I'm eager to continue
+          learning and expanding my skill set in this exciting field.
         </motion.p>
         <motion.a
           variants={slideInFromLeft(1)}

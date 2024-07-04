@@ -10,24 +10,37 @@ const Projects = () => {
       <h1 className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 py-20">
         My Projects
       </h1>
-      <div className="h-full w-full flex flex-col md:flex-row gap-10 px-4 md:px-10">
+      <div className="h-full w-full flex flex-col lg:flex-row gap-10 px-4 md:px-10 ">
         <ProjectCard
           src="/Truebond-Image.png"
           title="Truebond Matrimony"
           description="Our platform offers a seamless experience for users seeking marriage partners, with features ranging from biodata creation and search to premium membership and success story sharing."
           link="https://truebond-matrimony.web.app/"
+          clientcode="https://github.com/AdibHoque/Truebond-Matrimony"
+          servercode="https://github.com/AdibHoque/Truebond-Matrimony-Backend"
+          features={JSON.parse('["Dashboard", "Authentication", "Responsive"]')}
         />
         <ProjectCard
           src="/JobSeekers-Image.png"
           title="JobSeekers BD"
           description="JobSeekers BD is an online job portal designed to connect job seekers with potential employers. The platform offers a range of features to facilitate job searching, application management, and job posting."
           link="https://jobseekers-bd.web.app/"
+          clientcode="https://github.com/AdibHoque/JobSeekers-BD"
+          servercode="https://github.com/AdibHoque/JobSeekers-BD-Backend"
+          features={JSON.parse(
+            '["Authentication", "User-Frineldy", "Responsive"]'
+          )}
         />
         <ProjectCard
           src="/TrekTravels-Image.png"
           title="Trek Travels"
           description="Whether you're an adventurous soul, seeking thrilling experiences or wanna immerse yourself in diverse cultures, Trek Travels offers you the perfect platform to embark on unforgettable journeys across the world."
           link="https://trek-travels.web.app/"
+          clientcode="https://github.com/AdibHoque/Trek-Travels"
+          servercode="https://github.com/AdibHoque/Trek-Travels-Backend"
+          features={JSON.parse(
+            '["Authentication", "User-Frineldy", "Responsive"]'
+          )}
         />
       </div>
     </div>
