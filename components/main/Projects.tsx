@@ -28,7 +28,7 @@ const Projects = () => {
           clientcode="https://github.com/AdibHoque/JobSeekers-BD"
           servercode="https://github.com/AdibHoque/JobSeekers-BD-Backend"
           features={JSON.parse(
-            '["Authentication", "User-Frineldy", "Responsive"]'
+            '["Authentication", "User-Friendly", "Responsive"]'
           )}
         />
         <ProjectCard
@@ -39,7 +39,7 @@ const Projects = () => {
           clientcode="https://github.com/AdibHoque/Trek-Travels"
           servercode="https://github.com/AdibHoque/Trek-Travels-Backend"
           features={JSON.parse(
-            '["Authentication", "User-Frineldy", "Responsive"]'
+            '["Authentication", "User-Friendly", "Responsive"]'
           )}
         />
       </div>

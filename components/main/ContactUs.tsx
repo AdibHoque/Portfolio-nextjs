@@ -45,7 +45,7 @@ export const ContactUs: React.FC = () => {
       <form
         ref={form}
         onSubmit={sendEmail}
-        className="mb-12 max-w-md mx-auto p-4 button-primary border border-gray-300 rounded-lg shadow-lg"
+        className="px-4 mb-12 max-w-md mx-auto p-4 button-primary rounded-lg shadow-lg"
       >
         <label className="font-bold mb-2 text-white">Name</label>
         <input
