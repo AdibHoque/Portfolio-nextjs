@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 
-import { motion } from "framer-motion";
-import { slideInFromTop } from "@/utils/motion";
+import {motion} from "framer-motion";
+import {slideInFromTop} from "@/utils/motion";
 import Image from "next/image";
 
 const Encryption = () => {
@@ -57,7 +57,7 @@ const Encryption = () => {
           autoPlay
           playsInline
           preload="false"
-          className="w-full h-auto"
+          className="w-full"
           src="/encryption.webm/"
         />
       </div>

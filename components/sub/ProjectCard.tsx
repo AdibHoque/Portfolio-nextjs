@@ -68,7 +68,7 @@ const ProjectCard = ({
             />
           </div>
 
-          <div className="flex gap-2 w-full max-md:flex-wrap">
+          <div className="flex gap-x-2 w-full max-md:flex-wrap">
             <Link
               href={clientcode}
               className="py-2 mt-2 z-50 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg w-full max-w-[200px]"
