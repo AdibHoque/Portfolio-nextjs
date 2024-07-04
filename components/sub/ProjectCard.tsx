@@ -37,7 +37,7 @@ const ProjectCard = ({
           alt={title}
           width={1000}
           height={1000}
-          className="w-full h-56 object-fill"
+          className="w-full h-48 object-fill"
         />
 
         <div className="relative p-4">

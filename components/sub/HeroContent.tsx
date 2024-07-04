@@ -48,7 +48,7 @@ const HeroContent = () => {
           I&apos;m an aspiring Frontend Developer with a growing portfolio of
           web applications. I have foundational knowledge in various
           technologies and tools, and I am passionate about creating
-          user-friendly and responsive web solutions. I'm eager to continue
+          user-friendly and responsive web solutions. I&apos;m eager to continue
           learning and expanding my skill set in this exciting field.
         </motion.p>
         <motion.a
