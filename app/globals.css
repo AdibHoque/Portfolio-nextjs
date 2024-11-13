@@ -3,8 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 .cursive {
   font-family: "Cedarville Cursive", cursive;
 }
@@ -64,8 +62,20 @@
   display: none;
 }
 
+.nav-li {
+  @apply relative flex items-center justify-between flex-1 max-lg:flex-col max-lg:items-start;
+}
 
+.nav-logo {
+  @apply relative flex items-center justify-center flex-1;
+}
 
+.dot {
+  @apply w-1.5 h-1.5 rounded-full bg-[#3C52D9] max-lg:hidden;
+}
+.navlink {
+  @apply text-white font-bold uppercase;
+}
 html {
   scroll-behavior: smooth;
 }
