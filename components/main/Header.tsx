@@ -13,8 +13,24 @@ export default function Header() {
         <div className="mx-auto max-w-[1252px] px-16 max-xl:px-10 max-sm:px-4; flex items-center h-14 max-lg:px-5">
           <a href="/" className="flex-1 cursor-pointer lg:hidden z-2">
             <div className="flex  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 flex-col gap-0 ">
-              <h1 className="text-4xl font-extrabold">ADIB</h1>
-              <h3 className="text-3xl font-bold -mt-2">HOQUE</h3>
+              <h1
+                style={{
+                  WebkitTextStroke: "1px black",
+                  color: "transparent",
+                }}
+                className="text-4xl font-extrabold"
+              >
+                ADIB
+              </h1>
+              <h3
+                style={{
+                  WebkitTextStroke: "1px black",
+                  color: "transparent",
+                }}
+                className="text-3xl font-bold -mt-2"
+              >
+                HOQUE
+              </h3>
             </div>
           </a>
           <div
@@ -83,7 +99,7 @@ export default function Header() {
                   </li>
                 </ul>
               </nav>
-              <div className="absolute block lg:hidden z-50 top-1/2 left-0 w-[960px] h-[380px] translate-x-[-290px] -translate-y-1/2 rotate-90">
+              <div className="absolute block lg:hidden z-21 top-1/2 left-0 w-[960px] h-[380px] translate-x-[-290px] -translate-y-1/2 rotate-90">
                 <Image
                   src="/bg-outlines.svg"
                   width={960}

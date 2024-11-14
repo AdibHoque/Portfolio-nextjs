@@ -63,7 +63,7 @@
 }
 
 .nav-li {
-  @apply relative flex items-center justify-between flex-1 max-lg:flex-col max-lg:items-start;
+  @apply relative flex items-center justify-between flex-1 max-lg:flex-col  max-lg:items-start;
 }
 
 .nav-logo {
@@ -71,10 +71,10 @@
 }
 
 .dot {
-  @apply w-1.5 h-1.5 rounded-full bg-[#3C52D9] max-lg:hidden;
+  @apply w-1.5 h-1.5 rounded-full bg-purple-500 max-lg:hidden;
 }
 .navlink {
-  @apply text-white font-bold uppercase;
+  @apply text-white font-bold uppercase max-lg:text-3xl z-20 max-lg:my-4 hover:text-purple-500 hover:cursor-pointer;
 }
 html {
   scroll-behavior: smooth;

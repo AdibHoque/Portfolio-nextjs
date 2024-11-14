@@ -21,7 +21,7 @@ const HeroContent = () => {
       <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
         <motion.div
           variants={slideInFromTop}
-          className="invisible md:visible Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
+          className="invisible lg:visible Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
         >
           <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
           <h1 className="Welcome-text text-[13px]">
@@ -55,7 +55,7 @@ const HeroContent = () => {
           variants={slideInFromLeft(1)}
           href="/resume.pdf"
           download
-          className="py-2 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg max-w-[200px]"
+          className="py-2 z-50 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg max-w-[200px]"
         >
           <FaDownload></FaDownload> Download Resume
         </motion.a>
