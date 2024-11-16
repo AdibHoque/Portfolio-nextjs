@@ -10,7 +10,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <header className="z-20 fixed top-0 left-0 w-full py-2 md:py-4 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md">
+      <header className="z-30 fixed top-0 left-0 w-full py-2 md:py-4 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md">
         <div className="mx-auto max-w-[1252px] px-16 max-xl:px-10 max-sm:px-4; flex items-center h-14 max-lg:px-5">
           <a href="/" className="flex-1 cursor-pointer lg:hidden">
             <div className="flex  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 flex-col gap-0 ">
