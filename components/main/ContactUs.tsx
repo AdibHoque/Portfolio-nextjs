@@ -45,7 +45,7 @@ export const ContactUs: React.FC = () => {
   };
 
   return (
-    <div className="z-20 mt-20 flex flex-col justify-center items-center ">
+    <div className=" mt-20 flex flex-col justify-center items-center z-10">
       <div className="w-full h-auto flex flex-col items-center justify-center">
         <motion.div
           variants={slideInFromTop}
@@ -76,25 +76,25 @@ export const ContactUs: React.FC = () => {
         <input
           type="text"
           name="from_name"
-          className="border bg-opacity-80 border-gray-300 rounded-md px-3 py-2 mb-4 w-full"
+          className="border bg-opacity-80 border-gray-300/60 rounded-md px-3 py-2 mb-4 w-full bg-white/20"
         />
 
-        <label className="font-bold mb-2 text-white">Email</label>
+        <label className="font-bold mb-2 text-white ">Email</label>
         <input
           type="email"
           name="from_email"
-          className="border bg-opacity-80 border-gray-300 rounded-md px-3 py-2 mb-4 w-full"
+          className="border bg-opacity-80 border-gray-300/60 rounded-md px-3 py-2 mb-4 w-full bg-white/20"
         />
 
         <label className="font-bold mb-2 text-white">Message</label>
         <textarea
           name="message"
-          className="border bg-opacity-80 border-gray-300 rounded-md px-3 py-2 mb-4 w-full"
+          className="border bg-opacity-80 border-gray-300/60 rounded-md px-3 py-2 mb-4 w-full bg-white/20"
         ></textarea>
 
         <input
           type="submit"
-          value="Send"
+          value="Send Message"
           className="button-primary cursor-pointer text-white p-2 rounded-md"
         />
       </form>

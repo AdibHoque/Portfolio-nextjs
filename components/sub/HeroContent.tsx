@@ -16,7 +16,7 @@ const HeroContent = () => {
     <motion.div
       initial="hidden"
       animate="visible"
-      className="flex flex-row items-center justify-between px-4 md:px-8 lg:px-20 mt-20 w-full z-[20]"
+      className="flex flex-row items-center justify-between px-4 md:px-8 lg:px-20 mt-20 w-full "
     >
       <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
         <motion.div
@@ -55,7 +55,7 @@ const HeroContent = () => {
           variants={slideInFromLeft(1)}
           href="/resume.pdf"
           download
-          className="py-2 z-50 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg max-w-[200px]"
+          className="z-2 py-2 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg max-w-[200px]"
         >
           <FaDownload></FaDownload> Download Resume
         </motion.a>

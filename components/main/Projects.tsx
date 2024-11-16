@@ -11,10 +11,7 @@ import {SparklesIcon} from "@heroicons/react/24/solid";
 
 const Projects = () => {
   return (
-    <div
-      className="flex flex-col items-center justify-center z-20"
-      id="projects"
-    >
+    <div className="flex flex-col items-center justify-center" id="projects">
       <div className="w-full h-auto flex flex-col items-center justify-center">
         <motion.div
           variants={slideInFromTop}

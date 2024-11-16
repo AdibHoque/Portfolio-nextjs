@@ -68,24 +68,24 @@ const ProjectCard = ({
             />
           </div>
 
-          <div className="flex gap-x-2 w-full max-md:flex-wrap">
+          <div className="flex gap-x-2 w-full ">
             <Link
               href={clientcode}
-              className="py-2 mt-2 z-50 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg w-full max-w-[200px]"
+              className="py-2 mt-2 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg w-1/2"
             >
               <FaCode></FaCode>
               Client Code
             </Link>
             <Link
               href={servercode}
-              className="py-2 mt-2 z-50 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg w-full max-w-[200px]"
+              className="py-2 mt-2 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg w-1/2"
             >
               <FaCode></FaCode> Server Code
             </Link>
           </div>
           <Link
             href={link}
-            className="py-2 mt-2 z-50 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg max-w-[200px]"
+            className="py-2 mt-2 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg w-full"
           >
             <FaEye></FaEye>
             Live Preview
