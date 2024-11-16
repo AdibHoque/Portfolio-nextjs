@@ -45,7 +45,10 @@ export const ContactUs: React.FC = () => {
   };
 
   return (
-    <div className=" mt-20 flex flex-col justify-center items-center z-10">
+    <div
+      id="contact"
+      className=" mt-20 flex flex-col justify-center items-center z-10"
+    >
       <div className="w-full h-auto flex flex-col items-center justify-center">
         <motion.div
           variants={slideInFromTop}
