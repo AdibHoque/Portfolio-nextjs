@@ -59,29 +59,51 @@ const ProjectCard = ({
             Used Technologies
           </p>
           <div>
-            <Image
-              src="/used-tech.svg"
-              alt="react-svg"
-              key="react-svg"
-              width={1000}
-              height={1000}
-            />
+            {clientcode == servercode ? (
+              <Image
+                src="/icons-next.svg"
+                alt="nextjs-svg"
+                key="nextjs-svg"
+                width={1000}
+                height={1000}
+              />
+            ) : (
+              <Image
+                src="/used-tech.svg"
+                alt="react-svg"
+                key="react-svg"
+                width={1000}
+                height={1000}
+              />
+            )}
           </div>
 
           <div className="flex gap-x-2 w-full ">
-            <Link
-              href={clientcode}
-              className="py-2 mt-2 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg w-1/2"
-            >
-              <FaCode></FaCode>
-              Client Code
-            </Link>
-            <Link
-              href={servercode}
-              className="py-2 mt-2 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg w-1/2"
-            >
-              <FaCode></FaCode> Server Code
-            </Link>
+            {clientcode == servercode ? (
+              <Link
+                href={clientcode}
+                className="py-2 mt-2 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg w-full"
+              >
+                <FaCode></FaCode>
+                Project Code
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href={clientcode}
+                  className="py-2 mt-2 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg w-1/2"
+                >
+                  <FaCode></FaCode>
+                  Client Code
+                </Link>
+                <Link
+                  href={servercode}
+                  className="py-2 mt-2 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg w-1/2"
+                >
+                  <FaCode></FaCode> Server Code
+                </Link>
+              </>
+            )}
           </div>
           <Link
             href={link}

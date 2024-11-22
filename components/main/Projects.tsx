@@ -33,7 +33,18 @@ const Projects = () => {
           Never compromise on user experience
         </motion.div>
       </div>
-      <div className="h-full w-full flex flex-col lg:flex-row gap-10 px-4 md:px-10 ">
+      <div className="h-full w-full grid grid-cols-1 lg:grid-cols-3 gap-10 px-4 md:px-10 ">
+        <ProjectCard
+          src="/EventVerse-Image.png"
+          title="EventVerse"
+          description="Create & Connect: Your Event, Our Platform! Host events or grab tickets to exclusive events, all in one place. Your go-to platform for events and unforgettable experiences."
+          link="https://eventversely.vercel.app/"
+          clientcode="https://github.com/AdibHoque/EventVerse"
+          servercode="https://github.com/AdibHoque/EventVerse"
+          features={JSON.parse(
+            '["Manage Events", "Payment Integretion", "Tickets"]'
+          )}
+        />
         <ProjectCard
           src="/Truebond-Image.png"
           title="Truebond Matrimony"
@@ -41,26 +52,17 @@ const Projects = () => {
           link="https://truebond-matrimony.web.app/"
           clientcode="https://github.com/AdibHoque/Truebond-Matrimony"
           servercode="https://github.com/AdibHoque/Truebond-Matrimony-Backend"
-          features={JSON.parse('["Dashboard", "Authentication", "Responsive"]')}
+          features={JSON.parse(
+            '["Dashboard", "Premium Membership", "Payments"]'
+          )}
         />
         <ProjectCard
           src="/JobSeekers-Image.png"
           title="JobSeekers BD"
-          description="JobSeekers BD is an online job portal designed to connect job seekers with potential employers. The platform offers a range of features to facilitate job searching, application management, and job posting."
+          description="JobSeekers BD is an online job portal designed to connect job seekers with potential employers. The platform offers job searching, application management, and job posting."
           link="https://jobseekers-bd.web.app/"
           clientcode="https://github.com/AdibHoque/JobSeekers-BD"
           servercode="https://github.com/AdibHoque/JobSeekers-BD-Backend"
-          features={JSON.parse(
-            '["Authentication", "User-Friendly", "Responsive"]'
-          )}
-        />
-        <ProjectCard
-          src="/TrekTravels-Image.png"
-          title="Trek Travels"
-          description="Whether you're an adventurous soul, seeking thrilling experiences or wanna immerse yourself in diverse cultures, Trek Travels offers you the perfect platform to embark on unforgettable journeys across the world."
-          link="https://trek-travels.web.app/"
-          clientcode="https://github.com/AdibHoque/Trek-Travels"
-          servercode="https://github.com/AdibHoque/Trek-Travels-Backend"
           features={JSON.parse(
             '["Authentication", "User-Friendly", "Responsive"]'
           )}
