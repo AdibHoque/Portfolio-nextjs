@@ -1,13 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-
-import {motion} from "framer-motion";
-import {
-  slideInFromLeft,
-  slideInFromRight,
-  slideInFromTop,
-} from "@/utils/motion";
 import {FaCode, FaEye} from "react-icons/fa";
 
 interface Props {
@@ -29,92 +21,99 @@ const ProjectCard = ({
   servercode,
   features,
 }: Props) => {
+  const singleRepo = clientcode === servercode;
+
   return (
-    <Link href={link} target="_blank" rel="noopener noreferrer">
-      <div className="button-primary hover:cursor-pointer relative overflow-hidden rounded-lg shadow-lg border border-[#2A0E61]">
+    <article className="card flex h-full flex-col overflow-hidden">
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative block aspect-video w-full overflow-hidden"
+      >
         <Image
           src={src}
-          alt={title}
-          width={1000}
-          height={1000}
-          className="w-full h-48 object-fill"
+          alt={`${title} screenshot`}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
+      </a>
 
-        <div className="relative p-4">
-          <h1 className="text-2xl font-semibold text-white">{title}</h1>
-          <p className="mt-2 text-gray-300">{description}</p>
-          <p className="mt-2 text-lg text-gray-300 font-bold">Core Features</p>
-          <div className="flex gap-2 flex-wrap ">
-            {features.map((f) => (
-              <button
-                disabled
-                className="button-primary text-xs md:text-sm rounded-md text-white p-2"
-                key={f}
-              >
-                {f}
-              </button>
-            ))}
-          </div>
-          <p className="mt-2 text-lg text-gray-300 font-bold">
-            Used Technologies
-          </p>
-          <div>
-            {clientcode == servercode ? (
-              <Image
-                src="/icons-next.svg"
-                alt="nextjs-svg"
-                key="nextjs-svg"
-                width={1000}
-                height={1000}
-              />
-            ) : (
-              <Image
-                src="/used-tech.svg"
-                alt="react-svg"
-                key="react-svg"
-                width={1000}
-                height={1000}
-              />
-            )}
-          </div>
+      <div className="flex flex-1 flex-col p-5">
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xl font-semibold text-text transition-colors hover:text-accent-soft"
+        >
+          {title}
+        </a>
+        <p className="mt-2 text-sm leading-relaxed text-muted">{description}</p>
 
-          <div className="flex gap-x-2 w-full ">
-            {clientcode == servercode ? (
-              <Link
-                href={clientcode}
-                className="py-2 mt-2 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg w-full"
-              >
-                <FaCode></FaCode>
-                Project Code
-              </Link>
-            ) : (
-              <>
-                <Link
-                  href={clientcode}
-                  className="py-2 mt-2 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg w-1/2"
-                >
-                  <FaCode></FaCode>
-                  Client Code
-                </Link>
-                <Link
-                  href={servercode}
-                  className="py-2 mt-2 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg w-1/2"
-                >
-                  <FaCode></FaCode> Server Code
-                </Link>
-              </>
-            )}
-          </div>
-          <Link
+        <div className="mt-4 flex flex-wrap gap-2">
+          {features.map((f) => (
+            <span className="chip" key={f}>
+              {f}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-5 flex items-center">
+          <Image
+            src={singleRepo ? "/icons-next.svg" : "/used-tech.svg"}
+            alt="Technologies used"
+            width={200}
+            height={32}
+            className="h-8 w-auto object-contain"
+          />
+        </div>
+
+        <div className="mt-auto flex flex-col gap-2 pt-6">
+          <a
             href={link}
-            className="py-2 mt-2 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg w-full"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary w-full"
           >
-            <FaEye></FaEye>
+            <FaEye />
             Live Preview
-          </Link>
+          </a>
+          {singleRepo ? (
+            <a
+              href={clientcode}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost w-full"
+            >
+              <FaCode />
+              Project Code
+            </a>
+          ) : (
+            <div className="flex gap-2">
+              <a
+                href={clientcode}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost w-1/2"
+              >
+                <FaCode />
+                Client
+              </a>
+              <a
+                href={servercode}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost w-1/2"
+              >
+                <FaCode />
+                Server
+              </a>
+            </div>
+          )}
         </div>
       </div>
-    </Link>
+    </article>
   );
 };
 

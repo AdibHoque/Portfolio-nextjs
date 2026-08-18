@@ -2,75 +2,78 @@
 
 import React from "react";
 import {motion} from "framer-motion";
-import {
-  slideInFromLeft,
-  slideInFromRight,
-  slideInFromTop,
-} from "@/utils/motion";
+import {fadeUp, staggerContainer} from "@/utils/motion";
 import {SparklesIcon} from "@heroicons/react/24/solid";
-import Image from "next/image";
 import {FaDownload} from "react-icons/fa";
+import {FiArrowRight} from "react-icons/fi";
+import dynamic from "next/dynamic";
+
+const HeroCanvas = dynamic(() => import("@/components/sub/HeroCanvas"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="h-16 w-16 animate-pulse rounded-full bg-accent/20" />
+    </div>
+  ),
+});
 
 const HeroContent = () => {
   return (
     <motion.div
+      variants={staggerContainer}
       initial="hidden"
       animate="visible"
-      className="flex flex-row items-center justify-between px-4 md:px-8 lg:px-20 mt-20 w-full z-20"
+      className="mx-auto flex w-full max-w-[1200px] flex-col-reverse items-center gap-8 px-5 pt-24 sm:gap-12 sm:px-8 md:px-10 md:pt-28 lg:flex-row lg:justify-between lg:pt-32"
     >
-      <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
-        <motion.div
-          variants={slideInFromTop}
-          className="invisible lg:visible Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
-        >
-          <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
-          <h1 className="Welcome-text text-[13px]">
-            Frontend Developer Portfolio
-          </h1>
-        </motion.div>
+      {/* Text content */}
+      <div className="flex w-full flex-col items-center text-center lg:items-start lg:text-start">
+        <motion.span variants={fadeUp()} className="eyebrow">
+          <SparklesIcon className="h-4 w-4 text-accent-soft" />
+          Frontend Developer
+        </motion.span>
 
-        <motion.div
-          variants={slideInFromLeft(0.5)}
-          className="flex flex-col gap-6 mt-6 text-4xl md:text-6xl font-bold text-white max-w-[600px] w-auto h-auto"
+        <motion.h1
+          variants={fadeUp(0.1)}
+          className="mt-5 max-w-[560px] text-[2rem] font-bold leading-tight tracking-tight text-text sm:text-4xl md:text-5xl lg:max-w-[620px] lg:text-6xl"
         >
-          <span>
-            Hello, I am <br></br>
-            <span className="text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-              Adib Hoque{" "}
-            </span>
+          Hi, I&apos;m{" "}
+          <span className="bg-gradient-to-r from-accent to-accent-soft bg-clip-text text-transparent">
+            Adib Hoque
           </span>
-        </motion.div>
+          <br />I build for the web.
+        </motion.h1>
 
         <motion.p
-          variants={slideInFromLeft(0.8)}
-          className="text-lg text-gray-400 my-5 max-w-[600px]"
+          variants={fadeUp(0.2)}
+          className="mt-5 max-w-[480px] text-base leading-relaxed text-muted sm:text-lg"
         >
-          I&apos;m an aspiring Frontend Developer with a growing portfolio of
-          web applications. I have foundational knowledge in various
-          technologies and tools, and I am passionate about creating
-          user-friendly and responsive web solutions. I&apos;m eager to continue
-          learning and expanding my skill set in this exciting field.
+          A frontend developer crafting fast, responsive, user-friendly web
+          applications with React, Next.js and TypeScript — and always keen to
+          learn what comes next.
         </motion.p>
-        <motion.a
-          variants={slideInFromLeft(1)}
-          href="/Resume.pdf"
-          download
-          className="z-2 py-2 button-primary flex items-center justify-center gap-x-2 text-center text-white cursor-pointer rounded-lg max-w-[200px]"
+
+        <motion.div
+          variants={fadeUp(0.3)}
+          className="mt-8 flex w-full flex-col items-stretch gap-3 xs:flex-row xs:items-center xs:justify-center sm:w-auto lg:justify-start"
         >
-          <FaDownload></FaDownload> Download Resume
-        </motion.a>
+          <a href="#projects" className="btn btn-primary">
+            View Work
+            <FiArrowRight className="h-4 w-4" />
+          </a>
+          <a href="/Resume.pdf" download className="btn btn-ghost">
+            <FaDownload className="h-4 w-4" />
+            Download Resume
+          </a>
+        </motion.div>
       </div>
 
+      {/* 3D Scene */}
       <motion.div
-        variants={slideInFromRight(0.8)}
-        className="w-full h-full hidden md:flex justify-center items-center"
+        variants={fadeUp(0.15)}
+        className="hidden w-full shrink-0 items-center justify-center lg:flex lg:max-w-[520px]"
+        style={{ height: 480 }}
       >
-        <Image
-          src="/mainIconsdark.svg"
-          alt="work icons"
-          height={650}
-          width={650}
-        />
+        <HeroCanvas />
       </motion.div>
     </motion.div>
   );

@@ -1,152 +1,114 @@
 "use client";
 
 import clsx from "clsx";
-import Image from "next/image";
 import Link from "next/link";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 import {MdOutlineMenu, MdOutlineMenuOpen} from "react-icons/md";
+
+const links = [
+  {label: "About", href: "#about"},
+  {label: "Skills", href: "#skills"},
+  {label: "Projects", href: "#projects"},
+  {label: "Contact", href: "#contact"},
+];
+
 export default function Header() {
   const [open, setOpen] = useState(false);
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   return (
-    <>
-      <header className="z-30 fixed top-0 left-0 w-full py-2 md:py-4 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md">
-        <div className="mx-auto max-w-[1252px] px-16 max-xl:px-10 max-sm:px-4; flex items-center h-14 max-lg:px-5">
-          <a href="/" className="flex-1 cursor-pointer lg:hidden">
-            <div className="flex  text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 flex-col gap-0 ">
-              <h1
-                style={{
-                  WebkitTextStroke: "1px black",
-                  color: "transparent",
-                }}
-                className="text-4xl font-extrabold"
-              >
-                ADIB
-              </h1>
-              <h3
-                style={{
-                  WebkitTextStroke: "1px black",
-                  color: "transparent",
-                }}
-                className="text-3xl font-bold -mt-2"
-              >
-                HOQUE
-              </h3>
-            </div>
+    <header className="fixed top-0 left-0 z-30 w-full border-b border-glass bg-bg/80 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-5 sm:px-8 md:px-10">
+        {/* Wordmark */}
+        <Link
+          href="#about"
+          onClick={() => setOpen(false)}
+          className="text-base font-bold tracking-tight text-text transition-colors hover:text-white sm:text-lg"
+        >
+          Adib <span className="text-accent">Hoque</span>
+        </Link>
+
+        {/* Desktop nav */}
+        <nav className="hidden md:block">
+          <ul className="flex items-center gap-6 lg:gap-8">
+            {links.map((l) => (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  className="text-sm font-medium text-muted transition-colors hover:text-white"
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Mobile toggle */}
+        <button
+          onClick={() => setOpen(!open)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          className="z-50 flex size-10 items-center justify-center rounded-xl border border-glass bg-white/[0.04] text-text transition-all hover:bg-white/[0.08] md:hidden"
+        >
+          {open ? (
+            <MdOutlineMenuOpen className="h-6 w-6" />
+          ) : (
+            <MdOutlineMenu className="h-6 w-6" />
+          )}
+        </button>
+      </div>
+
+      {/* Mobile overlay backdrop */}
+      <div
+        aria-hidden="true"
+        onClick={() => setOpen(false)}
+        className={clsx(
+          "fixed inset-0 top-16 z-20 bg-black/40 backdrop-blur-sm transition-all duration-300 md:hidden",
+          open ? "opacity-100" : "pointer-events-none opacity-0"
+        )}
+      />
+
+      {/* Mobile slide-in panel */}
+      <div
+        className={clsx(
+          "fixed inset-x-0 top-16 z-20 border-b border-glass bg-[#0b0b14]/95 backdrop-blur-xl transition-all duration-300 ease-out md:hidden",
+          open ? "translate-y-0 opacity-100" : "-translate-y-4 pointer-events-none opacity-0"
+        )}
+      >
+        <nav className="flex flex-col px-5 py-6" aria-label="Mobile navigation">
+          {links.map((l, i) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              style={{
+                transitionDelay: open ? `${i * 50}ms` : "0ms",
+                opacity: open ? 1 : 0,
+                transform: open ? "translateX(0)" : "translateX(-8px)",
+              }}
+              className="flex items-center border-b border-glass/60 py-4 text-lg font-medium text-muted transition-all duration-200 last:border-b-0 hover:text-white"
+            >
+              <span className="mr-3 text-xs font-semibold text-accent/60">{String(i + 1).padStart(2, "0")}</span>
+              {l.label}
+            </Link>
+          ))}
+
+          <a
+            href="#contact"
+            onClick={() => setOpen(false)}
+            className="btn btn-primary mt-5 w-full"
+          >
+            Get In Touch
           </a>
-          <div
-            className={clsx(
-              "w-full max-lg:opacity-0 max-lg:fixed max-lg:top-0 max-lg:left-0 max-lg:w-full max-lg:bg-[#0C1838] transform transition-all duration-500 ease-in-out",
-              open ? "max-lg:opacity-100" : "max-lg:opacity-0 max-lg:hidden"
-            )}
-          >
-            <div className="max-lg:relative max-lg:flex max-lg:flex-col max-lg:min-h-screen max-lg:p-6 max-lg:overflow-hidden max-lg:before:absolute max-lg:before:-right-64 max-lg:before:top-2/5 max-lg:before:h-[440px] max-lg:before:w-[252px] max-lg:before:bg-purple-500 max-lg:before:blur-[200px] max-lg:before:content-[''] max-md:px-4">
-              <nav className="max-lg:relative max-lg:m-auto max-lg:z-2">
-                <ul className="flex max-lg:block max-lg:px-12">
-                  <li className="nav-li">
-                    <Link
-                      onClick={() => setOpen(false)}
-                      className="navlink"
-                      href="#about"
-                    >
-                      About
-                    </Link>
-                    <div className="dot"></div>
-                    <Link
-                      onClick={() => setOpen(false)}
-                      className="navlink"
-                      href="#skills"
-                    >
-                      Skills
-                    </Link>
-                  </li>
-
-                  <li className="nav-logo">
-                    <Link
-                      href="#hero"
-                      className={clsx(
-                        "max-lg:hidden transition-transform duration-500 cursor-pointer"
-                      )}
-                    >
-                      {/* <Image
-                        src="/adiblogo.svg"
-                        width={160}
-                        height={55}
-                        alt="Logo"
-                      /> */}
-                      <div className="flex text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 flex-col gap-0 justify-center items-center">
-                        <h1
-                          style={{
-                            WebkitTextStroke: "2px black",
-                            color: "transparent",
-                          }}
-                          className="text-5xl font-extrabold"
-                        >
-                          ADIB
-                        </h1>
-                        <h3
-                          style={{
-                            WebkitTextStroke: "2px black",
-                            color: "transparent",
-                          }}
-                          className="text-4xl font-bold -mt-2"
-                        >
-                          HOQUE
-                        </h3>
-                      </div>
-                    </Link>
-                  </li>
-
-                  <li className="nav-li">
-                    <Link
-                      onClick={() => setOpen(false)}
-                      className="navlink"
-                      href="#projects"
-                    >
-                      Projects
-                    </Link>
-                    <div className="dot"></div>
-                    <Link
-                      onClick={() => setOpen(false)}
-                      className="navlink"
-                      href="#contact"
-                    >
-                      Contact
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-              <div className="absolute block lg:hidden top-1/2 left-0 w-[960px] h-[380px] translate-x-[-290px] -translate-y-1/2 rotate-90">
-                <Image
-                  src="/bg-outlines.svg"
-                  width={960}
-                  height={380}
-                  className="relative z-2"
-                  alt=""
-                />
-                <Image
-                  src="/bg-outlines-fill.png"
-                  width={960}
-                  height={380}
-                  className="absolute inset-0 mix-blend-soft-light opacity-5"
-                  alt=""
-                />
-              </div>
-            </div>
-          </div>
-
-          <button
-            onClick={() => setOpen(!open)}
-            className="size-10 z-50 flex items-center justify-center rounded-full lg:hidden size-10 border-s4/25"
-          >
-            {open ? (
-              <MdOutlineMenuOpen className="w-8 h-8 text-white" />
-            ) : (
-              <MdOutlineMenu className="w-8 h-8 text-white" />
-            )}
-          </button>
-        </div>
-      </header>
-    </>
+        </nav>
+      </div>
+    </header>
   );
 }

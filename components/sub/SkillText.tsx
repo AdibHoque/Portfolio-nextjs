@@ -1,36 +1,36 @@
 "use client";
 import React from "react";
 import {motion} from "framer-motion";
-import {
-  slideInFromLeft,
-  slideInFromRight,
-  slideInFromTop,
-} from "@/utils/motion";
+import {fadeUp, staggerContainer} from "@/utils/motion";
 import {SparklesIcon} from "@heroicons/react/24/solid";
 
 const SkillText = () => {
   return (
-    <div className="w-full h-auto flex flex-col items-center justify-center">
-      <motion.div
-        variants={slideInFromTop}
-        className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
+    <motion.div
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{once: true, amount: 0.4}}
+      className="flex w-full flex-col items-center text-center"
+    >
+      <motion.span variants={fadeUp()} className="eyebrow">
+        <SparklesIcon className="h-4 w-4 text-accent-soft" />
+        My Skills
+      </motion.span>
+      <motion.h2
+        variants={fadeUp(0.1)}
+        className="mt-6 max-w-[600px] text-3xl font-bold tracking-tight text-text md:text-4xl"
       >
-        <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
-        <h1 className="Welcome-text text-[13px]">My Skills</h1>
-      </motion.div>
-      <motion.div
-        variants={slideInFromLeft(0.5)}
-        className="text-[30px] text-white font-medium mt-[10px] text-center mb-[15px]"
+        Building with modern technologies
+      </motion.h2>
+      <motion.p
+        variants={fadeUp(0.2)}
+        className="mt-4 max-w-[520px] text-lg text-muted"
       >
-        Making websites with modern technologies
-      </motion.div>
-      <motion.div
-        variants={slideInFromRight(0.5)}
-        className="cursive text-[20px] text-gray-200 mb-10 mt-[10px] text-center"
-      >
-        Never miss a task, deadline or idea
-      </motion.div>
-    </div>
+        The tools and frameworks I reach for to ship polished, reliable web
+        applications.
+      </motion.p>
+    </motion.div>
   );
 };
 

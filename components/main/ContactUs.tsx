@@ -3,11 +3,7 @@ import React, {useRef} from "react";
 import emailjs from "@emailjs/browser";
 import MySwal from "sweetalert2";
 import {motion} from "framer-motion";
-import {
-  slideInFromLeft,
-  slideInFromRight,
-  slideInFromTop,
-} from "@/utils/motion";
+import {fadeUp, staggerContainer} from "@/utils/motion";
 import {SparklesIcon} from "@heroicons/react/24/solid";
 
 export const ContactUs: React.FC = () => {
@@ -45,62 +41,97 @@ export const ContactUs: React.FC = () => {
   };
 
   return (
-    <div
+    <section
       id="contact"
-      className=" mt-20 flex flex-col justify-center items-center z-10"
+      className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 px-4 py-16 sm:px-6 sm:gap-12 md:px-10 md:py-24 lg:py-28"
     >
-      <div className="w-full h-auto flex flex-col items-center justify-center">
-        <motion.div
-          variants={slideInFromTop}
-          className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{once: true, amount: 0.4}}
+        className="flex w-full flex-col items-center text-center"
+      >
+        <motion.span variants={fadeUp()} className="eyebrow">
+          <SparklesIcon className="h-4 w-4 text-accent-soft" />
+          Contact Me
+        </motion.span>
+        <motion.h2
+          variants={fadeUp(0.1)}
+          className="mt-6 max-w-[600px] text-3xl font-bold tracking-tight text-text md:text-4xl"
         >
-          <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
-          <h1 className="Welcome-text text-[13px]">Contact Me</h1>
-        </motion.div>
-        <motion.div
-          variants={slideInFromLeft(0.5)}
-          className="text-[30px] text-white font-medium mt-[10px] text-center mb-[15px] px-5"
+          Let&apos;s work together
+        </motion.h2>
+        <motion.p
+          variants={fadeUp(0.2)}
+          className="mt-4 max-w-[520px] text-lg text-muted"
         >
-          I would write back as soon as possible.
-        </motion.div>
-        <motion.div
-          variants={slideInFromRight(0.5)}
-          className="cursive text-[20px] text-gray-200 mb-10 mt-[10px] text-center"
-        >
-          Great things awaits
-        </motion.div>
-      </div>
-      <form
+          Have a project in mind or just want to say hello? Drop me a message and
+          I&apos;ll get back to you as soon as possible.
+        </motion.p>
+      </motion.div>
+
+      <motion.form
         ref={form}
         onSubmit={sendEmail}
-        className="px-4 mb-12 max-w-md mx-auto p-4 button-primary rounded-lg shadow-lg"
+        variants={fadeUp(0.1)}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{once: true, amount: 0.2}}
+        className="glass-panel flex w-full max-w-lg flex-col gap-5 p-6 md:p-8"
       >
-        <label className="font-bold mb-2 text-white">Name</label>
-        <input
-          type="text"
-          name="from_name"
-          className="border bg-opacity-80 border-gray-300/60 rounded-md px-3 py-2 mb-4 w-full bg-white/20"
-        />
+        <div className="flex flex-col gap-2">
+          <label
+            htmlFor="from_name"
+            className="text-sm font-medium text-muted"
+          >
+            Name
+          </label>
+          <input
+            id="from_name"
+            type="text"
+            name="from_name"
+            required
+            placeholder="Your name"
+            className="w-full rounded-xl border border-glass bg-white/[0.03] px-4 py-3 text-sm text-text placeholder:text-subtle transition-colors focus:border-accent/50 focus:outline-none"
+          />
+        </div>
 
-        <label className="font-bold mb-2 text-white ">Email</label>
-        <input
-          type="email"
-          name="from_email"
-          className="border bg-opacity-80 border-gray-300/60 rounded-md px-3 py-2 mb-4 w-full bg-white/20"
-        />
+        <div className="flex flex-col gap-2">
+          <label
+            htmlFor="from_email"
+            className="text-sm font-medium text-muted"
+          >
+            Email
+          </label>
+          <input
+            id="from_email"
+            type="email"
+            name="from_email"
+            required
+            placeholder="you@example.com"
+            className="w-full rounded-xl border border-glass bg-white/[0.03] px-4 py-3 text-sm text-text placeholder:text-subtle transition-colors focus:border-accent/50 focus:outline-none"
+          />
+        </div>
 
-        <label className="font-bold mb-2 text-white">Message</label>
-        <textarea
-          name="message"
-          className="border bg-opacity-80 border-gray-300/60 rounded-md px-3 py-2 mb-4 w-full bg-white/20"
-        ></textarea>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="message" className="text-sm font-medium text-muted">
+            Message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            rows={5}
+            placeholder="Tell me about your project..."
+            className="w-full resize-y rounded-xl border border-glass bg-white/[0.03] px-4 py-3 text-sm text-text placeholder:text-subtle transition-colors focus:border-accent/50 focus:outline-none"
+          />
+        </div>
 
-        <input
-          type="submit"
-          value="Send Message"
-          className="button-primary cursor-pointer text-white p-2 rounded-md"
-        />
-      </form>
-    </div>
+        <button type="submit" className="btn btn-primary w-full">
+          Send Message
+        </button>
+      </motion.form>
+    </section>
   );
 };
