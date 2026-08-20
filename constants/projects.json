@@ -1,0 +1,137 @@
+{
+  "main_projects": [
+    {
+      "title": "NextWear",
+      "description": "A modern e-commerce clothing store for browsing products, managing carts, and checking out securely.",
+      "link": "https://nextwear.vercel.app/",
+      "image": "/ProjectImages/NextWear.png",
+      "clientcode": "https://github.com/AdibHoque/NextWear",
+      "servercode": "https://github.com/AdibHoque/NextWear",
+      "features": ["Product Catalog", "Cart", "Stripe Checkout"],
+      "technologies": [
+        "TypeScript",
+        "TailwindCSS",
+        "React",
+        "Next.js",
+        "Redux Toolkit",
+        "MongoDB"
+      ]
+    },
+    {
+      "title": "EventVerse",
+      "description": "A full-stack event platform for discovering events, managing listings, and buying tickets online.",
+      "link": "https://eventversely.vercel.app/",
+      "image": "/ProjectImages/EventVerse.png",
+      "clientcode": "https://github.com/AdibHoque/EventVerse",
+      "servercode": "https://github.com/AdibHoque/EventVerse",
+      "features": ["Event Management", "Ticketing", "Payments"],
+      "technologies": [
+        "TypeScript",
+        "TailwindCSS",
+        "React",
+        "Next.js",
+        "MongoDB"
+      ]
+    },
+    {
+      "title": "Truebond Matrimony",
+      "description": "A matrimony platform for creating biodata, finding suitable partners, and unlocking premium features.",
+      "link": "https://truebond-matrimony.web.app/",
+      "image": "/ProjectImages/TruebondMatrimony.png",
+      "clientcode": "https://github.com/AdibHoque/Truebond-Matrimony",
+      "servercode": "https://github.com/AdibHoque/Truebond-Matrimony-Backend",
+      "features": ["Partner Search", "Premium Plans", "Payments"],
+      "technologies": [
+        "JavaScript",
+        "TailwindCSS",
+        "React",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Firebase"
+      ]
+    }
+  ],
+  "vibe_coded_projects": [
+    {
+      "title": "Noakhailla Agro",
+      "description": "An e-commerce store for selling farm products with stock tracking and cash-on-delivery ordering.",
+      "link": "https://noakhailla-agro.vercel.app/",
+      "image": "/ProjectImages/NoakhaillaAgro.png",
+      "clientcode": false,
+      "servercode": false,
+      "vibeCodingTools": ["Claude Code", "Codex", "v0"],
+      "features": ["Product Management", "Cart", "Payments"],
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "TailwindCSS",
+        "MongoDB",
+        "Vercel Analytics"
+      ]
+    },
+    {
+      "title": "Marvel Watch Codex",
+      "description": "A mobile-first Marvel watch guide with curated watch orders, character timelines, ratings and viewing tips.",
+      "link": "https://marvel-watch-codex.lovable.app",
+      "image": "/ProjectImages/MarvelWatchCodex.png",
+      "clientcode": false,
+      "servercode": false,
+      "vibeCodingTools": ["Lovable"],
+      "features": ["Watch Orders", "Timelines", "Ratings"],
+      "technologies": ["TypeScript", "React", "TailwindCSS"]
+    },
+    {
+      "title": "Game Review Genie",
+      "description": "A chess analysis tool powered by Stockfish that reviews games, grades moves, and scores accuracy.",
+      "link": "https://chess-reviewer.lovable.app",
+      "image": "/ProjectImages/ChessReviewer.png",
+      "clientcode": false,
+      "servercode": false,
+      "vibeCodingTools": ["Lovable"],
+      "features": ["Analysis", "Move Grading", "Accuracy Score"],
+      "technologies": ["TypeScript", "React", "TailwindCSS"]
+    }
+  ],
+  "legacy_projects": [
+    {
+      "title": "JobSeekers BD",
+      "description": "An online job portal connecting seekers and employers through search, applications, and postings.",
+      "link": "https://jobseekers-bd.web.app/",
+      "image": "/ProjectImages/JobSeekers.png",
+      "clientcode": "https://github.com/AdibHoque/JobSeekers-BD",
+      "servercode": "https://github.com/AdibHoque/JobSeekers-BD-Backend",
+      "features": ["Job Search", "Applications", "Job Posting"],
+      "technologies": [
+        "JavaScript",
+        "TailwindCSS",
+        "React",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Firebase"
+      ]
+    },
+    {
+      "title": "TrekTravels",
+      "description": "A travel platform for discovering destinations and exploring curated tour and travel experiences.",
+      "link": "https://trek-travels.web.app/",
+      "image": "/ProjectImages/TrekTravels.png",
+      "clientcode": "https://github.com/AdibHoque/Trek-Travels",
+      "servercode": "https://github.com/AdibHoque/Trek-Travels-Backend",
+      "features": ["Tour Packages", "Destinations", "Booking"],
+      "technologies": ["JavaScript", "React", "Vite", "TailwindCSS", "Firebase"]
+    },
+    {
+      "title": "LuxeLife Estates",
+      "description": "A real estate platform for discovering property listings and exploring luxury estate opportunities.",
+      "link": "https://luxelife-estates.web.app/",
+      "image": "/ProjectImages/LuxelifeEstates.png",
+      "clientcode": "https://github.com/AdibHoque/Luxelife-Estates",
+      "servercode": "https://github.com/AdibHoque/Luxelife-Estates",
+      "features": ["Property Listings", "Search", "Details"],
+      "technologies": ["JavaScript", "React", "Vite", "TailwindCSS", "Firebase"]
+    }
+  ]
+}

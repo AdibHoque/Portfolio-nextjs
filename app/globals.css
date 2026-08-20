@@ -89,6 +89,11 @@
   .chip {
     @apply inline-flex items-center rounded-lg border border-glass bg-white/[0.04] px-2.5 py-1 text-xs font-medium text-muted;
   }
+
+  /* Small subdued technology tag */
+  .tag {
+    @apply inline-flex items-center rounded-md border border-glass bg-white/[0.03] px-2 py-0.5 text-[11px] font-medium text-subtle;
+  }
 }
 
 .cursive {

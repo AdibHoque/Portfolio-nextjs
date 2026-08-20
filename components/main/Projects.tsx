@@ -4,39 +4,7 @@ import ProjectCard from "../sub/ProjectCard";
 import {motion} from "framer-motion";
 import {fadeUp, staggerContainer} from "@/utils/motion";
 import {SparklesIcon} from "@heroicons/react/24/solid";
-
-const projects = [
-  {
-    src: "/EventVerse-Image.png",
-    title: "EventVerse",
-    description:
-      "Create & Connect: Your Event, Our Platform! Host events or grab tickets to exclusive events, all in one place. Your go-to platform for events and unforgettable experiences.",
-    link: "https://eventversely.vercel.app/",
-    clientcode: "https://github.com/AdibHoque/EventVerse",
-    servercode: "https://github.com/AdibHoque/EventVerse",
-    features: ["Manage Events", "Payment Integration", "Tickets"],
-  },
-  {
-    src: "/Truebond-Image.png",
-    title: "Truebond Matrimony",
-    description:
-      "Our platform offers a seamless experience for users seeking marriage partners, with features ranging from biodata creation and search to premium membership and success story sharing.",
-    link: "https://truebond-matrimony.web.app/",
-    clientcode: "https://github.com/AdibHoque/Truebond-Matrimony",
-    servercode: "https://github.com/AdibHoque/Truebond-Matrimony-Backend",
-    features: ["Dashboard", "Premium Membership", "Payments"],
-  },
-  {
-    src: "/JobSeekers-Image.png",
-    title: "JobSeekers BD",
-    description:
-      "JobSeekers BD is an online job portal designed to connect job seekers with potential employers. The platform offers job searching, application management, and job posting.",
-    link: "https://jobseekers-bd.web.app/",
-    clientcode: "https://github.com/AdibHoque/JobSeekers-BD",
-    servercode: "https://github.com/AdibHoque/JobSeekers-BD-Backend",
-    features: ["Authentication", "User-Friendly", "Responsive"],
-  },
-];
+import {projects, PROJECT_CATEGORIES, ProjectCategory} from "@/constants/projects";
 
 const Projects = () => {
   return (
@@ -65,9 +33,28 @@ const Projects = () => {
           variants={fadeUp(0.2)}
           className="mt-4 max-w-[520px] text-lg text-muted"
         >
-          A selection of full-stack applications built with real-world features
-          and a focus on user experience.
+          A selection of products I&apos;ve shipped — from full-stack applications
+          to vibe-coded experiments.
         </motion.p>
+      </motion.div>
+
+      {/* Category legend */}
+      <motion.div
+        variants={fadeUp(0.3)}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{once: true}}
+        className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2"
+      >
+        {(Object.keys(PROJECT_CATEGORIES) as ProjectCategory[]).map((category) => (
+          <span
+            key={category}
+            className="inline-flex items-center gap-1.5 text-sm text-muted"
+          >
+            <span className={`size-2 rounded-full ${PROJECT_CATEGORIES[category].dot}`} />
+            {PROJECT_CATEGORIES[category].label}
+          </span>
+        ))}
       </motion.div>
 
       <motion.div
