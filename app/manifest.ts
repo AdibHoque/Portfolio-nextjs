@@ -1,15 +1,15 @@
 import type {MetadataRoute} from "next";
-import {SITE} from "@/constants/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: SITE.title,
-    short_name: SITE.name,
-    description: SITE.description,
+    name: "Adib Hoque — Frontend Developer",
+    short_name: "Adib Hoque",
+    description:
+      "Portfolio of Adib Hoque, a frontend developer building web products with React, Next.js and TypeScript.",
     start_url: "/",
     display: "standalone",
-    background_color: "#0B0B14",
-    theme_color: "#0B0B14",
+    background_color: "#EFF0EE",
+    theme_color: "#EFF0EE",
     icons: [
       {
         src: "/favicon.ico",
