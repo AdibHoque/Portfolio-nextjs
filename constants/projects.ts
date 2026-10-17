@@ -5,6 +5,10 @@ export interface Project {
   description: string;
   link: string;
   image: string;
+  // Native pixel size of the screenshot, used to reserve the right box before
+  // it loads. Without it next/image assumes a ratio and the screenshot crops.
+  imageWidth: number;
+  imageHeight: number;
   clientcode: string | false;
   servercode: string | false;
   features: string[];

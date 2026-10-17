@@ -13,18 +13,26 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  // Tracks whether the panel was open on the previous render, so focus is only
+  // moved on a close — never on mount.
+  const wasOpen = useRef(false);
 
-  // Escape closes the panel and returns focus to the toggle.
+  // Escape closes the panel.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setOpen(false);
-        toggleRef.current?.focus();
-      }
+      if (e.key === "Escape") setOpen(false);
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  // Return focus to the toggle after the panel has actually closed. Doing this
+  // in the same tick as setOpen fails: applying `hidden` makes the browser
+  // drop focus to <body> after our .focus() call.
+  useEffect(() => {
+    if (wasOpen.current && !open) toggleRef.current?.focus();
+    wasOpen.current = open;
   }, [open]);
 
   return (

@@ -7,29 +7,37 @@ const index = projects.slice(1);
 export function ProjectShot({
   src,
   alt,
+  width,
+  height,
   className = "",
   sizes = "100vw",
   priority = false,
 }: {
   src: string;
   alt: string;
+  width: number;
+  height: number;
   className?: string;
   sizes?: string;
   priority?: boolean;
 }) {
   return (
     // Screenshots are light UIs on light paper: the hairline frames them so
-    // each one reads as a print rather than a floating rectangle.
-    <div className={`overflow-hidden border border-line bg-white ${className}`}>
+    // each one reads as a print rather than a floating rectangle. min-w-0 lets
+    // the grid/flex parent shrink instead of growing to the image's intrinsic
+    // width, which would push the page into horizontal scroll. Intrinsic
+    // dimensions are passed through and containment (not cover) is used so a
+    // screenshot is never cropped.
+    <div className={`min-w-0 overflow-hidden border border-line bg-white ${className}`}>
       <Image
         src={src}
         alt={alt}
-        width={1600}
-        height={1000}
+        width={width}
+        height={height}
         sizes={sizes}
         quality={82}
         priority={priority}
-        className="h-auto w-full object-cover object-top"
+        className="h-auto w-full object-contain"
       />
     </div>
   );
@@ -54,7 +62,9 @@ const Work = () => {
           >
             <ProjectShot
               src={featured.project.image}
-              alt={`${featured.project.title} — product catalogue screen`}
+              alt={`${featured.project.title} — storefront`}
+              width={featured.project.imageWidth}
+              height={featured.project.imageHeight}
               sizes="(min-width: 1024px) 760px, 100vw"
               priority
               className="transition-opacity duration-300 hover:opacity-90"
@@ -132,13 +142,15 @@ const Work = () => {
               <ProjectShot
                 src={p.image}
                 alt={`${p.title} screen`}
+                width={p.imageWidth}
+                height={p.imageHeight}
                 sizes="(min-width: 640px) 45vw, 100vw"
                 className="transition-opacity duration-300 group-hover:opacity-90"
               />
             </a>
 
             <div className="mt-4 flex items-baseline justify-between gap-4">
-              <h3 className="text-base font-medium text-ink">
+              <h3 className="text-[1.0625rem] font-medium tracking-[-0.01em] text-ink">
                 <a
                   href={p.link}
                   target="_blank"
