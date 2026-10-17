@@ -33,6 +33,39 @@ export const SITE = {
     "Web Development",
     "UI Engineering",
   ],
+
+  // ── Page content ──────────────────────────────────────────────────────
+  // Hero paragraph: what he does and for whom, in his own register.
+  intro:
+    "I build web products end to end — product catalogues, checkout flows, dashboards — with React, Next.js and TypeScript. I spend most of my time on the parts a screenshot never shows: loading states, empty states, and what happens when something breaks.",
+  // The homepage "about" note. Each entry is one paragraph.
+  note: [
+    "I started out building full-stack apps for friends' businesses in Bangladesh, and that shaped how I work: a feature isn't done when it renders, it's done when someone can use it to buy something, find a job, or book a ticket without calling me for help.",
+    "Most of what I write now is React and Next.js on the front end, with Node, Express and MongoDB behind it. I like interfaces that stay out of the way — plain language, obvious next steps, nothing decorative competing with the task.",
+    "When I'm not building, I'm usually reading about interface design or playing with a new AI coding tool to see how far it gets before I have to take over.",
+  ],
+  // Skill groups, stated as capability rather than as a logo wall.
+  stack: [
+    {
+      label: "Front end",
+      items: [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Redux Toolkit",
+        "React Query",
+      ],
+    },
+    {
+      label: "Back end & data",
+      items: ["Node.js", "Express", "MongoDB", "Firebase", "Prisma"],
+    },
+    {
+      label: "Payments & tooling",
+      items: ["Stripe", "Git", "Vercel", "Figma", "Framer Motion"],
+    },
+  ],
 } as const;
 
 // Keywords the site should surface for. Name-first, since ranking for

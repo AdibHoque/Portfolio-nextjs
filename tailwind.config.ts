@@ -12,28 +12,30 @@ const config: Config = {
         xs: "480px",
       },
       colors: {
+        paper: "var(--paper)",
+        "paper-raise": "var(--paper-raise)",
+        ink: "var(--ink)",
+        muted: "var(--ink-muted)",
+        faint: "var(--ink-faint)",
+        line: "var(--line)",
+        "line-strong": "var(--line-strong)",
+        accent: "var(--accent)",
+
+        /* Transitional aliases for un-migrated components. */
         bg: "var(--bg)",
         elevated: "var(--bg-elevated)",
         surface: "var(--surface)",
         glass: "var(--glass)",
         text: "var(--text)",
-        muted: "var(--text-muted)",
         subtle: "var(--text-subtle)",
-        accent: "var(--accent)",
         "accent-soft": "var(--accent-soft)",
       },
-      boxShadow: {
-        glow: "0 0 40px -8px rgba(139, 92, 246, 0.5)",
-        glass: "0 8px 32px -12px rgba(0, 0, 0, 0.6)",
+      fontFamily: {
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         xl: "0.875rem",
         "2xl": "1rem",
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
   },
