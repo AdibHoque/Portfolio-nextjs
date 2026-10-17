@@ -1,5 +1,5 @@
 import type {Metadata} from "next";
-import {Schibsted_Grotesk} from "next/font/google";
+import {Figtree} from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/main/Footer";
 import Header from "@/components/main/Header";
@@ -8,7 +8,10 @@ import {SITE, SITE_KEYWORDS} from "@/constants/site";
 // One family for the whole site: hierarchy comes from scale and weight, not
 // from a second display face. Loaded through next/font so it is self-hosted,
 // preloaded, and sets its own metric-adjusted fallback (no layout shift).
-const sans = Schibsted_Grotesk({
+// Figtree is chosen over a trendier grotesque because Next 13.5 ships fallback
+// metrics for it; Schibsted Grotesk and Instrument Sans do not, and their
+// fallback would shift text on load.
+const sans = Figtree({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
