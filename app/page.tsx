@@ -1,15 +1,15 @@
-import {ContactUs} from "@/components/main/ContactUs";
+import {Contact} from "@/components/main/ContactUs";
 import Hero from "@/components/main/Hero";
-import Projects from "@/components/main/Projects";
-import Skills from "@/components/main/Skills";
+import Note from "@/components/main/Note";
+import Work from "@/components/main/Work";
 
 export default function Home() {
   return (
-    <main className="h-full w-full">
+    <main className="pb-8">
       <Hero />
-      <Skills />
-      <Projects />
-      <ContactUs />
+      <Work />
+      <Note />
+      <Contact />
     </main>
   );
 }
