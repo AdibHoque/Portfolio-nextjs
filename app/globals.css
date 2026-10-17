@@ -1,153 +1,111 @@
-@import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg: #0b0b14;
-  --bg-elevated: #12121c;
-  --surface: rgba(255, 255, 255, 0.03);
-  --glass: rgba(255, 255, 255, 0.08);
-  --text: #ededf2;
-  --text-muted: #a1a1b5;
-  --text-subtle: #6b6b80;
-  --accent: #8b5cf6;
-  --accent-soft: #a78bfa;
+  /* Paper-and-ink palette. The work supplies the color; the page stays quiet. */
+  --paper: #eff0ee;
+  --ink: #131313;
+  --ink-muted: #55554f;
+  --ink-faint: #6d6d66;
+  --line: rgba(19, 19, 19, 0.13);
+  --line-strong: rgba(19, 19, 19, 0.3);
+  --accent: #4338ca;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* offset anchor targets so the fixed header doesn't overlap them */
-    scroll-padding-top: 5rem;
+    /* offset anchor targets so the sticky masthead doesn't overlap them */
+    scroll-padding-top: 4.5rem;
   }
 
   body {
-    background-color: var(--bg);
-    color: var(--text);
+    background-color: var(--paper);
+    color: var(--ink);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background-color: color-mix(in srgb, var(--accent) 35%, transparent);
-    color: var(--text);
+    background-color: var(--ink);
+    color: var(--paper);
   }
 
   :focus-visible {
     outline: 2px solid var(--accent);
-    outline-offset: 2px;
-    border-radius: 4px;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  img,
+  svg {
+    display: block;
+  }
+
+  /* Respect the OS setting for every animation and transition on the page. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
 @layer components {
-  /* Section wrapper: consistent vertical rhythm + centered container */
-  .section {
-    @apply w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-10 py-16 md:py-24 lg:py-28;
+  /* Page container: one width, one gutter rhythm, used by every section. */
+  .shell {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8 lg:px-12;
   }
 
-  /* Small labelled pill used above section headings */
-  .eyebrow {
-    @apply inline-flex items-center gap-2 rounded-full border border-glass bg-white/[0.03] px-3 py-1.5 text-xs font-medium uppercase tracking-[0.15em] text-muted backdrop-blur-md;
+  /* Inline text link, underlined at rest so it reads as a link without color. */
+  .link {
+    @apply underline decoration-line-strong underline-offset-[3px] transition-colors hover:decoration-ink;
   }
 
-  /* Glass surfaces */
-  .glass-panel {
-    @apply rounded-2xl border border-glass bg-white/[0.03] backdrop-blur-md shadow-glass;
+  .masthead-link {
+    @apply text-sm text-muted underline decoration-transparent underline-offset-4 transition-colors hover:text-ink hover:decoration-line-strong;
   }
 
-  .card {
-    @apply rounded-2xl border border-glass bg-white/[0.03] backdrop-blur-md shadow-glass transition-all duration-300;
-  }
-  .card:hover {
-    @apply shadow-glow -translate-y-1;
-    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  .btn-ink {
+    @apply inline-flex w-full items-center justify-center rounded-[3px] bg-ink px-5 py-3 text-sm font-medium text-paper transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto;
   }
 
-  /* Buttons */
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all duration-300 cursor-pointer;
-  }
-  .btn-primary {
-    background-color: var(--accent);
-    color: #ffffff;
-  }
-  .btn-primary:hover {
-    background-color: var(--accent-soft);
-    box-shadow: 0 0 24px 0 rgba(139, 92, 246, 0.45);
-  }
-  .btn-ghost {
-    @apply border border-glass bg-white/[0.03] text-text backdrop-blur-md;
-  }
-  .btn-ghost:hover {
-    @apply text-white bg-white/[0.06];
-    border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  /* Underlined form input: no box, no fill, no radius. */
+  .field {
+    @apply w-full rounded-none border-0 border-b border-line bg-transparent px-0 py-3 text-base text-ink placeholder:text-faint focus:border-ink focus:outline-none focus:ring-0;
   }
 
-  /* Tag / feature chip */
-  .chip {
-    @apply inline-flex items-center rounded-lg border border-glass bg-white/[0.04] px-2.5 py-1 text-xs font-medium text-muted;
-  }
-
-  /* Small subdued technology tag */
-  .tag {
-    @apply inline-flex items-center rounded-md border border-glass bg-white/[0.03] px-2 py-0.5 text-[11px] font-medium text-subtle;
+  /* The single entrance animation on the page. Delay is set per element. */
+  .rise {
+    animation: rise 700ms cubic-bezier(0.22, 0.7, 0.2, 1) both;
+    animation-delay: var(--d, 0ms);
   }
 }
 
-.cursive {
-  font-family: "Cedarville Cursive", cursive;
-}
-
-/* Legacy classes refreshed to the new aesthetic so any remaining usages inherit it */
-.Welcome-text {
-  color: var(--accent-soft);
-}
-.Welcome-box {
-  isolation: isolate;
-  overflow: hidden;
-  align-items: center;
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  border-radius: 9999px;
-  display: flex;
-  position: relative;
-  width: -moz-max-content;
-  width: max-content;
-}
-
-.button-primary {
-  background-color: var(--accent);
-  color: #ffffff;
-  transition: all 0.3s ease;
-}
-.button-primary:hover {
-  background-color: var(--accent-soft);
-  box-shadow: 0 0 24px 0 rgba(139, 92, 246, 0.45);
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .scrollbar-hidden {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
-}
-
-.nav-li {
-  @apply relative flex items-center gap-6 max-lg:flex-col max-lg:items-start max-lg:gap-4;
-}
-
-.nav-logo {
-  @apply relative flex items-center justify-center;
-}
-
-.dot {
-  @apply w-1 h-1 rounded-full max-lg:hidden;
-    background-color: color-mix(in srgb, var(--accent) 60%, transparent);
-}
-.navlink {
-  @apply text-muted font-medium transition-colors duration-200 max-lg:text-3xl z-20 max-lg:my-2 hover:text-white hover:cursor-pointer;
 }

@@ -1,137 +1,131 @@
 "use client";
-import React, {useRef} from "react";
-import emailjs from "@emailjs/browser";
-import MySwal from "sweetalert2";
-import {motion} from "framer-motion";
-import {fadeUp, staggerContainer} from "@/utils/motion";
-import {SparklesIcon} from "@heroicons/react/24/solid";
 
-export const ContactUs: React.FC = () => {
+import {useRef, useState} from "react";
+import emailjs from "@emailjs/browser";
+import {SITE} from "@/constants/site";
+
+type State = "idle" | "sending" | "sent" | "error";
+
+export const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
+  const [state, setState] = useState<State>("idle");
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!form.current || state === "sending") return;
 
-    if (form.current) {
-      emailjs
-        .sendForm(
-          "Adib-Portfolio",
-          "template_fke9x0s",
-          form.current,
-          "9MKherpptDhGZ-j_6"
-        )
-        .then(
-          () => {
-            console.log("SUCCESS!");
-            MySwal.fire({
-              position: "center",
-              icon: "success",
-              title: "Email Sent!",
-              showConfirmButton: false,
-            });
-            if (form.current) {
-              form.current.reset();
-            }
-          },
-          (error) => {
-            console.log("FAILED...", error.text);
-          }
-        );
-    }
+    setState("sending");
+    emailjs
+      .sendForm(
+        "Adib-Portfolio",
+        "template_fke9x0s",
+        form.current,
+        "9MKherpptDhGZ-j_6"
+      )
+      .then(
+        () => {
+          setState("sent");
+          form.current?.reset();
+        },
+        () => {
+          // The visitor needs to know it failed and what to do instead.
+          setState("error");
+        }
+      );
   };
 
   return (
-    <section
-      id="contact"
-      className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 px-4 py-16 sm:px-6 sm:gap-12 md:px-10 md:py-24 lg:py-28"
-    >
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{once: true, amount: 0.4}}
-        className="flex w-full flex-col items-center text-center"
-      >
-        <motion.span variants={fadeUp()} className="eyebrow">
-          <SparklesIcon className="h-4 w-4 text-accent-soft" />
-          Contact Me
-        </motion.span>
-        <motion.h2
-          variants={fadeUp(0.1)}
-          className="mt-6 max-w-[600px] text-3xl font-bold tracking-tight text-text md:text-4xl"
-        >
-          Let&apos;s work together
-        </motion.h2>
-        <motion.p
-          variants={fadeUp(0.2)}
-          className="mt-4 max-w-[520px] text-lg text-muted"
-        >
-          Have a project in mind or just want to say hello? Drop me a message and
-          I&apos;ll get back to you as soon as possible.
-        </motion.p>
-      </motion.div>
+    <section id="contact" className="shell mt-24 sm:mt-32">
+      <h2 className="border-b border-line pb-4 text-sm font-medium text-muted">
+        Contact
+      </h2>
 
-      <motion.form
-        ref={form}
-        onSubmit={sendEmail}
-        variants={fadeUp(0.1)}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{once: true, amount: 0.2}}
-        className="glass-panel flex w-full max-w-lg flex-col gap-5 p-6 md:p-8"
-      >
-        <div className="flex flex-col gap-2">
-          <label
-            htmlFor="from_name"
-            className="text-sm font-medium text-muted"
-          >
-            Name
-          </label>
-          <input
-            id="from_name"
-            type="text"
-            name="from_name"
-            required
-            placeholder="Your name"
-            className="w-full rounded-xl border border-glass bg-white/[0.03] px-4 py-3 text-sm text-text placeholder:text-subtle transition-colors focus:border-accent/50 focus:outline-none"
-          />
+      <div className="mt-10 grid grid-cols-1 gap-12 lg:mt-14 lg:grid-cols-12 lg:gap-10">
+        <div className="lg:col-span-5">
+          <p className="max-w-[34ch] text-2xl leading-[1.35] tracking-[-0.015em] text-ink sm:text-[1.75rem]">
+            Have something you want built? Send a note and I&apos;ll reply
+            within a day.
+          </p>
+          <p className="mt-6 text-sm text-muted">
+            Or email me directly:{" "}
+            <a href={`mailto:${SITE.email}`} className="link text-ink">
+              {SITE.email}
+            </a>
+          </p>
         </div>
 
-        <div className="flex flex-col gap-2">
-          <label
-            htmlFor="from_email"
-            className="text-sm font-medium text-muted"
-          >
-            Email
-          </label>
-          <input
-            id="from_email"
-            type="email"
-            name="from_email"
-            required
-            placeholder="you@example.com"
-            className="w-full rounded-xl border border-glass bg-white/[0.03] px-4 py-3 text-sm text-text placeholder:text-subtle transition-colors focus:border-accent/50 focus:outline-none"
-          />
-        </div>
+        <div className="lg:col-span-6 lg:col-start-7">
+          <form ref={form} onSubmit={sendEmail} className="space-y-6">
+            <div>
+              <label htmlFor="from_name" className="block text-sm text-muted">
+                Your name
+              </label>
+              <input
+                id="from_name"
+                name="from_name"
+                type="text"
+                required
+                autoComplete="name"
+                className="field"
+              />
+            </div>
 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="message" className="text-sm font-medium text-muted">
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            required
-            rows={5}
-            placeholder="Tell me about your project..."
-            className="w-full resize-y rounded-xl border border-glass bg-white/[0.03] px-4 py-3 text-sm text-text placeholder:text-subtle transition-colors focus:border-accent/50 focus:outline-none"
-          />
-        </div>
+            <div>
+              <label htmlFor="from_email" className="block text-sm text-muted">
+                Email
+              </label>
+              <input
+                id="from_email"
+                name="from_email"
+                type="email"
+                required
+                autoComplete="email"
+                className="field"
+              />
+            </div>
 
-        <button type="submit" className="btn btn-primary w-full">
-          Send Message
-        </button>
-      </motion.form>
+            <div>
+              <label htmlFor="message" className="block text-sm text-muted">
+                What do you need?
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows={4}
+                className="field resize-y"
+              />
+            </div>
+
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <button
+                type="submit"
+                disabled={state === "sending"}
+                className="btn-ink"
+              >
+                {state === "sending" ? "Sending…" : "Send message"}
+              </button>
+
+              <p
+                role="status"
+                aria-live="polite"
+                className="text-sm text-muted"
+              >
+                {state === "sent" &&
+                  "Sent. I'll get back to you within a day."}
+                {state === "error" && (
+                  <>
+                    That didn&apos;t send. Email me instead:{" "}
+                    <a href={`mailto:${SITE.email}`} className="link text-ink">
+                      {SITE.email}
+                    </a>
+                  </>
+                )}
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
     </section>
   );
 };

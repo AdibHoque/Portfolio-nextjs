@@ -1,12 +1,21 @@
 import type {Metadata} from "next";
-import {Inter} from "next/font/google";
+import {Figtree} from "next/font/google";
 import "./globals.css";
-import AuroraBackground from "@/components/main/AuroraBackground";
 import Footer from "@/components/main/Footer";
 import Header from "@/components/main/Header";
 import {SITE, SITE_KEYWORDS} from "@/constants/site";
 
-const inter = Inter({subsets: ["latin"]});
+// One family for the whole site: hierarchy comes from scale and weight, not
+// from a second display face. Loaded through next/font so it is self-hosted,
+// preloaded, and sets its own metric-adjusted fallback (no layout shift).
+// Figtree is chosen over a trendier grotesque because Next 13.5 ships fallback
+// metrics for it; Schibsted Grotesk and Instrument Sans do not, and their
+// fallback would shift text on load.
+const sans = Figtree({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   // Resolves all relative metadata URLs (og:image, canonical) against the site origin.
@@ -101,12 +110,15 @@ function StructuredData() {
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.className} bg-bg text-text overflow-y-scroll overflow-x-hidden`}
-      >
+    <html lang="en" className={sans.variable}>
+      <body className="overflow-x-hidden bg-paper font-sans text-ink antialiased">
         <StructuredData />
-        <AuroraBackground />
+        <a
+          href="#work"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
+        >
+          Skip to work
+        </a>
         <Header />
         {children}
         <Footer />

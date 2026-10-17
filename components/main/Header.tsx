@@ -1,112 +1,112 @@
 "use client";
 
-import clsx from "clsx";
-import Link from "next/link";
-import {useState, useEffect} from "react";
-
-import {MdOutlineMenu, MdOutlineMenuOpen} from "react-icons/md";
+import {useEffect, useRef, useState} from "react";
+import {SITE} from "@/constants/site";
 
 const links = [
-  {label: "About", href: "#about"},
-  {label: "Skills", href: "#skills"},
-  {label: "Projects", href: "#projects"},
+  {label: "Work", href: "#work"},
+  {label: "Note", href: "#note"},
   {label: "Contact", href: "#contact"},
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  // Tracks whether the panel was open on the previous render, so focus is only
+  // moved on a close — never on mount.
+  const wasOpen = useRef(false);
 
-  // Prevent body scroll when menu is open
+  // Escape closes the panel.
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  // Return focus to the toggle after the panel has actually closed. Doing this
+  // in the same tick as setOpen fails: applying `hidden` makes the browser
+  // drop focus to <body> after our .focus() call.
+  useEffect(() => {
+    if (wasOpen.current && !open) toggleRef.current?.focus();
+    wasOpen.current = open;
   }, [open]);
 
   return (
-    <header className="fixed top-0 left-0 z-30 w-full border-b border-glass bg-bg/80 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-5 sm:px-8 md:px-10">
-        {/* Wordmark */}
-        <Link
-          href="#about"
+    <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur-sm">
+      <div className="shell flex h-14 items-center justify-between">
+        <a
+          href="#top"
+          className="text-[15px] font-medium tracking-tight text-ink"
           onClick={() => setOpen(false)}
-          className="text-base font-bold tracking-tight text-text transition-colors hover:text-white sm:text-lg"
         >
-          Adib <span className="text-accent">Hoque</span>
-        </Link>
+          {SITE.name}
+        </a>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:block">
-          <ul className="flex items-center gap-6 lg:gap-8">
+        <nav aria-label="Primary" className="hidden sm:block">
+          <ul className="flex items-center gap-7">
             {links.map((l) => (
               <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className="text-sm font-medium text-muted transition-colors hover:text-white"
-                >
+                <a href={l.href} className="masthead-link">
                   {l.label}
-                </Link>
+                </a>
               </li>
             ))}
+            <li>
+              <a
+                href={`mailto:${SITE.email}`}
+                className="text-sm font-medium text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-ink"
+              >
+                Email
+              </a>
+            </li>
           </ul>
         </nav>
 
-        {/* Mobile toggle */}
         <button
+          ref={toggleRef}
+          type="button"
           onClick={() => setOpen(!open)}
-          aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          className="z-50 flex size-10 items-center justify-center rounded-xl border border-glass bg-white/[0.04] text-text transition-all hover:bg-white/[0.08] md:hidden"
+          aria-controls="mobile-nav"
+          className="-mr-2 flex h-9 items-center rounded px-2 text-sm text-muted transition-colors hover:text-ink sm:hidden"
         >
-          {open ? (
-            <MdOutlineMenuOpen className="h-6 w-6" />
-          ) : (
-            <MdOutlineMenu className="h-6 w-6" />
-          )}
+          {open ? "Close" : "Menu"}
         </button>
       </div>
 
-      {/* Mobile overlay backdrop */}
       <div
-        aria-hidden="true"
-        onClick={() => setOpen(false)}
-        className={clsx(
-          "fixed inset-0 top-16 z-20 bg-black/40 backdrop-blur-sm transition-all duration-300 md:hidden",
-          open ? "opacity-100" : "pointer-events-none opacity-0"
-        )}
-      />
-
-      {/* Mobile slide-in panel */}
-      <div
-        className={clsx(
-          "fixed inset-x-0 top-16 z-20 border-b border-glass bg-[#0b0b14]/95 backdrop-blur-xl transition-all duration-300 ease-out md:hidden",
-          open ? "translate-y-0 opacity-100" : "-translate-y-4 pointer-events-none opacity-0"
-        )}
+        id="mobile-nav"
+        ref={panelRef}
+        hidden={!open}
+        className="border-t border-line bg-paper sm:hidden"
       >
-        <nav className="flex flex-col px-5 py-6" aria-label="Mobile navigation">
-          {links.map((l, i) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              style={{
-                transitionDelay: open ? `${i * 50}ms` : "0ms",
-                opacity: open ? 1 : 0,
-                transform: open ? "translateX(0)" : "translateX(-8px)",
-              }}
-              className="flex items-center border-b border-glass/60 py-4 text-lg font-medium text-muted transition-all duration-200 last:border-b-0 hover:text-white"
-            >
-              <span className="mr-3 text-xs font-semibold text-accent/60">{String(i + 1).padStart(2, "0")}</span>
-              {l.label}
-            </Link>
-          ))}
-
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="btn btn-primary mt-5 w-full"
-          >
-            Get In Touch
-          </a>
+        <nav aria-label="Mobile" className="shell py-2">
+          <ul>
+            {links.map((l) => (
+              <li key={l.href} className="border-b border-line last:border-b-0">
+                <a
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="block py-3.5 text-base text-ink"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a
+                href={`mailto:${SITE.email}`}
+                onClick={() => setOpen(false)}
+                className="block py-3.5 text-base text-ink"
+              >
+                {SITE.email}
+              </a>
+            </li>
+          </ul>
         </nav>
       </div>
     </header>

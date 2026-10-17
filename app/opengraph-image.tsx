@@ -5,7 +5,7 @@ export const runtime = "edge";
 
 // Static route (no params) → generated once at build time. Feeds og:image and
 // twitter:image automatically, and the Person schema's `image`. 1200×630 is the
-// standard social-card size.
+// standard social-card size. Matches the site's paper-and-ink palette.
 export const alt = `${SITE.name} — ${SITE.jobTitle}`;
 export const size = {width: 1200, height: 630};
 export const contentType = "image/png";
@@ -19,45 +19,24 @@ export default function OpengraphImage() {
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          padding: "80px",
-          background:
-            "radial-gradient(circle at 25% 20%, rgba(139,92,246,0.28), transparent 55%), radial-gradient(circle at 85% 90%, rgba(139,92,246,0.18), transparent 50%), #0B0B14",
+          justifyContent: "space-between",
+          padding: "72px 80px",
+          background: "#EFF0EE",
+          color: "#131313",
           fontFamily: "sans-serif",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "16px",
-            color: "#C4B5FD",
-            fontSize: "30px",
-            fontWeight: 600,
-            letterSpacing: "0.02em",
-          }}
-        >
-          <div
-            style={{
-              width: "14px",
-              height: "14px",
-              borderRadius: "9999px",
-              background: "#8B5CF6",
-              boxShadow: "0 0 20px 2px rgba(139,92,246,0.9)",
-            }}
-          />
+        <div style={{display: "flex", fontSize: "28px", color: "#55554F"}}>
           {SITE.jobTitle}
         </div>
 
         <div
           style={{
-            marginTop: "28px",
             display: "flex",
-            fontSize: "108px",
-            fontWeight: 800,
-            lineHeight: 1,
-            color: "#F5F5FA",
-            letterSpacing: "-0.03em",
+            fontSize: "132px",
+            fontWeight: 700,
+            lineHeight: 0.95,
+            letterSpacing: "-0.04em",
           }}
         >
           {SITE.name}
@@ -65,27 +44,34 @@ export default function OpengraphImage() {
 
         <div
           style={{
-            marginTop: "28px",
             display: "flex",
-            fontSize: "34px",
-            color: "#9CA3AF",
-            maxWidth: "820px",
-            lineHeight: 1.35,
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+            borderTop: "1px solid rgba(19,19,19,0.2)",
+            paddingTop: "28px",
           }}
         >
-          Building fast, user-friendly web apps with React, Next.js & TypeScript.
-        </div>
-
-        <div
-          style={{
-            marginTop: "auto",
-            display: "flex",
-            fontSize: "28px",
-            fontWeight: 600,
-            color: "#8B5CF6",
-          }}
-        >
-          adibhoque.me
+          <div
+            style={{
+              display: "flex",
+              fontSize: "30px",
+              color: "#55554F",
+              maxWidth: "720px",
+              lineHeight: 1.4,
+            }}
+          >
+            Building web products with React, Next.js and TypeScript.
+          </div>
+          <div
+            style={{
+              display: "flex",
+              fontSize: "28px",
+              fontWeight: 600,
+              color: "#4338CA",
+            }}
+          >
+            adibhoque.me
+          </div>
         </div>
       </div>
     ),
