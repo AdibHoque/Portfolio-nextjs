@@ -5,23 +5,12 @@
 :root {
   /* Paper-and-ink palette. The work supplies the color; the page stays quiet. */
   --paper: #eff0ee;
-  --paper-raise: #f7f7f5;
   --ink: #131313;
   --ink-muted: #55554f;
   --ink-faint: #6d6d66;
   --line: rgba(19, 19, 19, 0.13);
   --line-strong: rgba(19, 19, 19, 0.3);
   --accent: #4338ca;
-
-  /* Transitional aliases so un-migrated components stay legible. */
-  --bg: var(--paper);
-  --bg-elevated: var(--paper-raise);
-  --surface: rgba(19, 19, 19, 0.03);
-  --glass: var(--line);
-  --text: var(--ink);
-  --text-muted: var(--ink-muted);
-  --text-subtle: var(--ink-faint);
-  --accent-soft: #5b4fd6;
 }
 
 @layer base {
@@ -98,46 +87,6 @@
   .rise {
     animation: rise 700ms cubic-bezier(0.22, 0.7, 0.2, 1) both;
     animation-delay: var(--d, 0ms);
-  }
-
-  /* ── Legacy classes ────────────────────────────────────────────────
-     Still referenced by components not yet migrated. Removed once every
-     component uses the tokens above. */
-  .section {
-    @apply w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-10 py-16 md:py-24 lg:py-28;
-  }
-
-  .eyebrow {
-    @apply inline-flex items-center gap-2 rounded-full border border-glass bg-white/[0.03] px-3 py-1.5 text-xs font-medium uppercase tracking-[0.15em] text-muted;
-  }
-
-  .glass-panel {
-    @apply rounded-2xl border border-glass bg-white/[0.03];
-  }
-
-  .card {
-    @apply rounded-2xl border border-glass bg-white/[0.03] transition-all duration-300;
-  }
-
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all duration-300 cursor-pointer;
-  }
-
-  .btn-primary {
-    background-color: var(--accent);
-    color: #ffffff;
-  }
-
-  .btn-ghost {
-    @apply border border-glass text-text;
-  }
-
-  .chip {
-    @apply inline-flex items-center rounded-lg border border-glass bg-white/[0.04] px-2.5 py-1 text-xs font-medium text-muted;
-  }
-
-  .tag {
-    @apply inline-flex items-center rounded-md border border-glass bg-white/[0.03] px-2 py-0.5 text-[11px] font-medium text-subtle;
   }
 }
 

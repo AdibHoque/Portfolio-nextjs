@@ -59,7 +59,7 @@ export const SITE = {
     },
     {
       label: "Back end & data",
-      items: ["Node.js", "Express", "MongoDB", "Firebase", "Prisma"],
+      items: ["Node.js", "Express", "MongoDB", "Firebase", "REST APIs"],
     },
     {
       label: "Payments & tooling",
